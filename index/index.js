@@ -1,7 +1,7 @@
 $(function () {
     const proyectos = [
-        { "nombre": "SuperMigue" },
-        { "nombre": "ListaTareas" }
+        { "nombre": "Mario" },
+        { "nombre": "Lista de tareas" }
     ];
 
     proyectos.forEach(proyecto => {
