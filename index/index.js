@@ -1,11 +1,16 @@
 $(function () {
     const proyectos = [
-        { "nombre": "Mario" },
-        { "nombre": "Lista de tareas" }
+        { "nombre": "Lista de tareas" },
+        { "nombre": "Mario" }
     ];
 
+    //Mostrar los proyectos en el index
     proyectos.forEach(proyecto => {
         let div = $('<div></div>');
+
+        div.on("click", function() {
+            window.location.href = "https://miguelucky.github.io/MiguelAngel_Portafolio/Proyectos/" + proyecto.nombre + "/";
+        });
 
         let img = $('<img>', {
             class: 'imgProyecto',
