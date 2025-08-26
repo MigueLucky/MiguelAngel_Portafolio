@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="generalListaTareas.css">
+    <link rel="icon" type="image/png" href="img/Lista de tareas.png">
+</head>
+
+<body>
+    <header>
+        <h1>Lista de tareas</h1>
+        <div id="volverAtras">
+            <i class="fa-solid fa-arrow-left"></i>
+            <strong>Volver atras</strong>
+        </div>
+    </header>
+
+    <main>
+        <section id="fondoNegro"></section>
+        <section>
+            <div id="cabeceraTareas">
+                <input type="text" id="buscadorTareas" placeholder="Buscar tareas...">
+                <button id="crearTareas">Crear nueva tarea</button>
+            </div>
+            <div id="listaTareas">
+                <div class="tarea">
+                    <div>
+                        <strong>Nombre de la tarea de prueba</strong>
+                        <p>Descripción de ejemplo para la tarea de prueba.</p>
+                    </div>
+                    <div>
+                        <button class="btnEditarTarea">Editar</button>
+                        <button class="btnBorrarTarea">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="generalListaTareas.js"></script>
+</body>
+
+</html>
