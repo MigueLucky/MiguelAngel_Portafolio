@@ -32,18 +32,57 @@ strong {
 
 p,
 span,
-button {
+button,
+input {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.6; 
 }
 
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 3px;
+    transition: background 0.2s, transform 0.1s;
+    color: #fff; /* color por defecto, puedes sobreescribir en cada caso */
+}
+
+#btnCrearTareas {
+    background: #28a745;
+    width: 25%;
+}
+#btnCrearTareas:hover {
+    background: #218838;
+    transform: translateY(-2px) scale(1.04);
+}
+
+.btnEditarTarea {
+    background: #ffc107;
+    color: #000;
+}
+.btnEditarTarea:hover {
+    background: #e0a800;
+    transform: translateY(-2px) scale(1.04);
+}
+
+.btnBorrarTarea {
+    background: #dc3545;
+}
+.btnBorrarTarea:hover {
+    background: #c82333;
+    transform: translateY(-2px) scale(1.04);
+}
+
+
 body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr;
-    background-color: #e6ddc4;
+    background-color: #fcf8f2;
 }
 
 #fondoNegro {
@@ -60,6 +99,7 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: fit-content;
 }
 
 #volverAtras i {
@@ -69,4 +109,63 @@ header {
 main {
     display: flex;
     justify-content: center;
+}
+
+main > section:nth-child(2) {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+    padding: 32px 28px 24px 28px;
+    min-width: 300px;
+    max-width: 600px;
+    height: fit-content;
+}
+
+#cabeceraTareas {
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#buscadorTareas {
+    width: 60%;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    font-size: 1rem;
+    background: #f8f8f8;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    outline: none;
+}
+
+#buscadorTareas:focus {
+    border: 1.5px solid #f4845f;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(244,132,95,0.10);
+}
+
+#listaTareas {
+    max-height: 500px;
+    overflow: auto;
+}
+
+.tarea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+.tarea:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.tarea > div:nth-child(2) {
+    margin: 10px;
 }
