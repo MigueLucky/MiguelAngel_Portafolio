@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"nombre": "Comprar",
+		"descripcion": "Ir al supermercado y comprar leche, pan y frutas."
+	},
+	{
+		"id": 2,
+		"nombre": "Estudiar JavaScript",
+		"descripcion": "Repasar funciones, arrays y objetos para el proyecto."
+	},
+	{
+		"id": 3,
+		"nombre": "Hacer ejercicio",
+		"descripcion": "Salir a correr 30 minutos por el parque."
+	},
+	{
+		"id": 4,
+		"nombre": "Llamar a Juan",
+		"descripcion": "Comentarle los avances del trabajo y resolver dudas."
+	},
+	{
+		"id": 5,
+		"nombre": "Leer un libro",
+		"descripcion": "Avanzar al menos un capítulo."
+	}
+]
