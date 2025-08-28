@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="generalListaTareas.css">
@@ -16,11 +17,12 @@
 <body>
     <header>
         <h1>Lista de tareas</h1>
-        <h2>(Por motivos de seguridad de JS y que no tengo acceso a un backend, las ediciones son locales)</h2>
         <div id="volverAtras">
             <i class="fa-solid fa-arrow-left"></i>
             <strong>Volver atras</strong>
         </div>
+        <input id="nombreTarea" type="text">
+        <input id="descripcionTarea" type="text">
     </header>
 
     <main>
@@ -36,7 +38,31 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="generalListaTareas.js"></script>
+    <!-- Script que me conecta con el backend -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTFwJuSDg8cMAXwPvjNp_9vDWEM_dmfLg",
+            authDomain: "portafolio-5453c.firebaseapp.com",
+            projectId: "portafolio-5453c",
+            storageBucket: "portafolio-5453c.firebasestorage.app",
+            messagingSenderId: "626152728699",
+            appId: "1:626152728699:web:0160517f1df10392fe9ade",
+            measurementId: "G-2KZFF4P9ZB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+
+    <script type="module" src="generalListaTareas.js"></script>
 </body>
 
 </html>

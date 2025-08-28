@@ -1,14 +1,43 @@
+import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const db = getFirestore();
+
 $(function () {
     $("#volverAtras").on("click", function () {
         window.location.href = "https://miguelucky.github.io/MiguelAngel_Portafolio/";
     });
 
-    function cargarTareas() {
-        $.getJSON('generalListaTareas.json', function (tareas) {
-            let lista = $('#listaTareas');
-            lista.empty();
-            tareas.forEach(function (tarea) {
-                const tareaHtml = `
+    $("#btnCrearTareas").on("click", function () {
+        let nombreTarea = $("#nombreTarea").val();
+        let descripcionTarea = $("#descripcionTarea").val();
+
+        crearTarea(nombreTarea, descripcionTarea);
+    });
+
+    $("#listaTareas").on("click", ".btnEditarTarea", function() {
+        let idTarea = $(this).attr("id");
+        let nombreTarea = $("#nombreTarea").val();
+        let descripcionTarea = $("#descripcionTarea").val();
+
+        if (nombreTarea) {
+            editarTarea(idTarea, nombreTarea, descripcionTarea);
+        }
+    });
+
+    $("#listaTareas").on("click", ".btnBorrarTarea", function() {
+        let idTarea = $(this).attr("id");
+
+        borrarTarea(idTarea)
+    });
+
+    cargarTareas();
+});
+
+function renderizarTareas(tareas) {
+    $("#listaTareas").empty();
+
+    tareas.forEach(function (tarea) {
+        const tareaHtml = `
                 <div id="${tarea.id}" class="tarea">
                     <div>
                         <strong>${tarea.nombre}</strong>
@@ -20,17 +49,29 @@ $(function () {
                     </div>
                 </div>
             `;
-                lista.append(tareaHtml);
-            });
-        });
+        $("#listaTareas").append(tareaHtml);
+    });
+};
 
-        $(".btnEditarTarea").off().on("click", function () {
+async function cargarTareas() {
+    const querySnapshot = await getDocs(collection(db, "tareas"));
+    const tareas = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    renderizarTareas(tareas);
+}
 
-        })
-
-        $(".btnBorrarTarea").off().on("click", function () {
-            $(this).id
-        })
-    }
+async function crearTarea(nombre, descripcion) {
+    await addDoc(collection(db, "tareas"), { nombre, descripcion });
     cargarTareas();
-});
+}
+
+async function editarTarea(id, nombre, descripcion) {
+    const tareaRef = doc(db, "tareas", id);
+    await updateDoc(tareaRef, { nombre, descripcion });
+    cargarTareas();
+}
+
+async function borrarTarea(id) {
+    const tareaRef = doc(db, "tareas", id);
+    await deleteDoc(tareaRef);
+    cargarTareas();
+}
