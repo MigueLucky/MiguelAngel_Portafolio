@@ -8,19 +8,19 @@ $(function () {
     });
 
     $("#buscadorTareas").on("input", function () {
-    let texto = $(this).val().toLowerCase();
+        let texto = $(this).val().toLowerCase();
 
-    $("#listaTareas .tarea").each(function () {
-        let nombre = $(this).find("strong").text().toLowerCase();
-        let descripcion = $(this).find("p").text().toLowerCase();
+        $("#listaTareas .tarea").each(function () {
+            let nombre = $(this).find("strong").text().toLowerCase();
+            let descripcion = $(this).find("p").text().toLowerCase();
 
-        if (nombre.includes(texto) || descripcion.includes(texto)) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
+            if (nombre.includes(texto) || descripcion.includes(texto)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     });
-});
 
     $("#btnCrearTareas").on("click", function () {
         $("body").addClass("modal-abierto");
