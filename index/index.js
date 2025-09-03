@@ -70,16 +70,18 @@ function mostrarContacto() {
 
         if (!asunto || !descripcion) {
             $(".error").show();
-            return false; 
-        }  else {
+            return false;
+        } else {
             $("main").empty();
             $("main").append(`
                 <h2>Mensaje enviado correctamente, le responderé lo antes posible.</h2>
                 <h3>Se le movera automaticamente al index pasados unos segundos</h3>
                 `);
-            
-            setTimeout(function() {
-                window.location.href = "index.html";
+
+            setTimeout(function () {
+                $("main").fadeOut(1000, function () {
+                    window.location.href = "index.html";
+                });
             }, 5000);
 
             return true;
