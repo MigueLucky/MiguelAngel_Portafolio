@@ -1,7 +1,6 @@
 $(function () {
     const proyectos = [
-        { "nombre": "Lista de tareas" },
-        { "nombre": "Mario" }
+        { "nombre": "Lista de tareas" }
     ];
 
     //Mostrar los proyectos en el index
