@@ -7,6 +7,21 @@ $(function () {
         window.location.href = "https://miguelucky.github.io/MiguelAngel_Portafolio/";
     });
 
+    $("#buscadorTareas").on("input", function () {
+    let texto = $(this).val().toLowerCase();
+
+    $("#listaTareas .tarea").each(function () {
+        let nombre = $(this).find("strong").text().toLowerCase();
+        let descripcion = $(this).find("p").text().toLowerCase();
+
+        if (nombre.includes(texto) || descripcion.includes(texto)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});
+
     $("#btnCrearTareas").on("click", function () {
         $("body").addClass("modal-abierto");
 
@@ -76,6 +91,7 @@ $(function () {
 
 function renderizarTareas(tareas) {
     $("#listaTareas").empty();
+    $("#buscadorTareas").val("");
 
     tareas.forEach(function (tarea) {
         const tareaHtml = `
