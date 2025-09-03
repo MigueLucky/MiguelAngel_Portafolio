@@ -73,11 +73,14 @@ function mostrarContacto() {
             return false; 
         }  else {
             $("main").empty();
-            $("main").append("<h2>Mensaje enviado correctamente, le responderé lo antes posible o, si es una sugerencia, ¡GRACIAS!</h2>");
+            $("main").append(`
+                <h2>Mensaje enviado correctamente, le responderé lo antes posible.</h2>
+                <h3>Se le movera automaticamente al index pasados unos segundos</h3>
+                `);
             
             setTimeout(function() {
                 window.location.href = "index.html";
-            }, 3000);
+            }, 5000);
 
             return true;
         }
