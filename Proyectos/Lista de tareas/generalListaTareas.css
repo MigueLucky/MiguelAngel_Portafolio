@@ -56,11 +56,14 @@ button {
     width: 25%;
 }
 
+#btnCrearTareas:hover  {
+    background: #218838;
+}
+
 #btnGuardarYCrear {
     background: #28a745;
 }
 
-#btnCrearTareas:hover,
 #btnGuardarYCrear:hover {
     background: #218838;
     transform: translateY(-2px) scale(1.04);
@@ -73,7 +76,6 @@ button {
 
 .btnEditarTarea:hover {
     background: #e0a800;
-    transform: translateY(-2px) scale(1.04);
 }
 
 .btnBorrarTarea {
@@ -85,6 +87,10 @@ button {
     transform: translateY(-2px) scale(1.04);
 }
 
+body:not(.modal-abierto) #btnCrearTareas:hover,
+body:not(.modal-abierto) .btnEditarTarea:hover {
+    transform: translateY(-2px) scale(1.04);
+}
 
 body {
     min-height: 100vh;
@@ -103,11 +109,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
-}
-
-body.modal-abierto .btnEditarTarea,
-body.modal-abierto #btnCrearTarea {
-    pointer-events: none;
 }
 
 .contenidoFondoNegro {

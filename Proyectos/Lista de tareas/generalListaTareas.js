@@ -8,6 +8,8 @@ $(function () {
     });
 
     $("#btnCrearTareas").on("click", function () {
+        $("body").addClass("modal-abierto");
+
         $("#fondoNegro").addClass("activo");
         $("body").addClass("modal-abierto");
 
@@ -33,6 +35,8 @@ $(function () {
     });
 
     $("#listaTareas").on("click", ".btnEditarTarea", function () {
+        $("body").addClass("modal-abierto");
+
         let idTarea = $(this).attr("id");
         let nombreTarea = $(this).data("nombre");
         let descripcionTarea = $(this).data("descripcion");
@@ -94,6 +98,8 @@ function cerrarFondoNegro() {
     $("#fondoNegro").fadeOut(300, function () {
         $("#descripcionTarea").val("");
         $("#nombreTarea").val("");
+        $(".error").text("");
+        $("body").removeClass("modal-abierto");
     });
 }
 
