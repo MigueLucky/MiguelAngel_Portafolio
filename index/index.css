@@ -47,7 +47,7 @@ header {
     text-align: center;
 }
 
-main {
+main.proyectos {
     margin-left: 15vw;
     width: 70vw;
     display: flex;
@@ -56,7 +56,7 @@ main {
     justify-content: center;
 }
 
-main div {
+main.proyectos div {
     width: 200px;
     height: 160px;
     cursor: pointer;
@@ -68,7 +68,7 @@ main div {
     margin: 10px;
 }
 
-main div:hover {
+main.proyectos div:hover {
     scale: 1.1;
 }
 
@@ -79,6 +79,92 @@ main div:hover {
     object-fit: cover;
 }
 
+main.contacto {
+    margin-left: 30vw;
+    width: 40vw;
+}
+
+#formContacto {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+#formContacto input,
+#formContacto textarea {
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ecf0f1;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+    outline: none;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+#formContacto input:focus,
+#formContacto textarea:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 8px #a2f5bf;
+}
+
+#formContacto input::placeholder,
+#formContacto textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+#formContacto button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+#formContacto button:hover {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.error {
+    display: none;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-left: 4px solid #c0392b;
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 6px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 footer {
     margin: 10px;
     text-align: center;
@@ -87,4 +173,13 @@ footer {
 footer i {
     color: #a2f5bf;
     margin-right: 8px;
+}
+
+.alternarMain {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.alternarMain:hover {
+    color: #a2f5bf;
 }

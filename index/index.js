@@ -1,13 +1,41 @@
 $(function () {
+    mostrarProyectosMain();
+
+    $(".alternarMain").on("click", function () {
+        let $main = $("main");
+        let tipoActual = $(this).data("tipo");
+        let $boton = $(this);
+
+        $main.fadeOut(200, function () {
+            $main.empty();
+
+            if (tipoActual === "proyectos") {
+                $boton.data("tipo", "contacto");
+                $boton.text("Vuelve a seguir viendo mis proyectos");
+
+                $main.removeClass("proyectos").addClass("contacto");
+                mostrarContacto();
+            } else {
+                $boton.data("tipo", "proyectos");
+                $boton.text("Contacta conmigo pinchando aquí");
+
+                $main.removeClass("contacto").addClass("proyectos");
+                mostrarProyectosMain();
+            }
+            $main.fadeIn(200);
+        });
+    });
+});
+
+function mostrarProyectosMain() {
     const proyectos = [
         { "nombre": "Lista de tareas" }
     ];
 
-    //Mostrar los proyectos en el index
     proyectos.forEach(proyecto => {
         let div = $('<div></div>');
 
-        div.on("click", function() {
+        div.on("click", function () {
             window.location.href = "https://miguelucky.github.io/MiguelAngel_Portafolio/Proyectos/" + proyecto.nombre + "/";
         });
 
@@ -21,4 +49,36 @@ $(function () {
         div.append(img, p);
         $('main').append(div);
     });
-});
+}
+
+function mostrarContacto() {
+    $("main").append(`
+        <form id="formContacto" action="https://formsubmit.co/miguejordaterol@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nuevo mensaje del portafolio - {{asunto}}">
+            <input type="hidden" name="_next" value="https://miguelucky.github.io/MiguelAngel_Portafolio/gracias.html">
+            <input type="hidden" name="mensajeCompleto" id="mensajeCompleto">
+
+            <input type="text" name="asunto" placeholder="Asunto del email" />
+            <textarea name="descripcion" placeholder="Descripción del email" rows="5"></textarea>
+            <input type="email" name="email" placeholder="Tu correo (opcional, para poder responderte)" />
+
+            <button type="submit">Enviar</button>
+
+            <p class="error">Por favor, rellena todos los campos obligatorios antes de enviar.</p>
+        </form>
+    `);
+
+    $("main").on("submit", "#formContacto", function () {
+        let descripcion = this.descripcion.value.trim();
+        let email = this.email.value.trim();
+        let asunto = this.asunto.value.trim();
+
+        if (!asunto || !descripcion) {
+            $(".error").show();
+            return false; 
+        } else {
+            $(".error").hide();
+            $("#mensajeCompleto").val(descripcion + "\nCorreo de respuesta: " + email);
+        }
+    });
+}
