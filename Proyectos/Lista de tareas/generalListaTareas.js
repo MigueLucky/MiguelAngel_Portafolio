@@ -8,23 +8,60 @@ $(function () {
     });
 
     $("#btnCrearTareas").on("click", function () {
-        let nombreTarea = $("#nombreTarea").val();
-        let descripcionTarea = $("#descripcionTarea").val();
+        $("#fondoNegro").addClass("activo");
+        $("body").addClass("modal-abierto");
 
-        crearTarea(nombreTarea, descripcionTarea);
+        $(".contenidoFondoNegro div h3").text("Crea nueva tarea")
+        $("#fondoNegro").fadeIn(300).css("display", "flex");
+
+        $("#btnGuardarYCrear").off().on("click", function () {
+            let nombreTarea = $("#nombreTarea").val();
+            let descripcionTarea = $("#descripcionTarea").val();
+
+            if (nombreTarea) {
+                crearTarea(nombreTarea, descripcionTarea);
+
+                cerrarFondoNegro();
+            } else {
+                $(".error").text("Por favor, ponle un nombre a la tarea.");
+            };
+        });
+
+        $(".fa-xmark").on("click", function () {
+            cerrarFondoNegro();
+        });
     });
 
-    $("#listaTareas").on("click", ".btnEditarTarea", function() {
+    $("#listaTareas").on("click", ".btnEditarTarea", function () {
         let idTarea = $(this).attr("id");
-        let nombreTarea = $("#nombreTarea").val();
-        let descripcionTarea = $("#descripcionTarea").val();
+        let nombreTarea = $(this).data("nombre");
+        let descripcionTarea = $(this).data("descripcion");
 
-        if (nombreTarea) {
-            editarTarea(idTarea, nombreTarea, descripcionTarea);
-        }
+        $("#nombreTarea").val(nombreTarea);
+        $("#descripcionTarea").val(descripcionTarea);
+        $(".contenidoFondoNegro div h3").text("Edita tarea")
+
+        $("#fondoNegro").fadeIn(300).css("display", "flex");
+
+        $("#btnGuardarYCrear").off().on("click", function () {
+            nombreTarea = $("#nombreTarea").val();
+            descripcionTarea = $("#descripcionTarea").val();
+
+            if (nombreTarea) {
+                editarTarea(idTarea, nombreTarea, descripcionTarea);
+
+                cerrarFondoNegro();
+            } else {
+                $(".error").text("Por favor, ponle un nombre a la tarea.");
+            };
+        });
+
+        $(".fa-xmark").on("click", function () {
+            cerrarFondoNegro();
+        });
     });
 
-    $("#listaTareas").on("click", ".btnBorrarTarea", function() {
+    $("#listaTareas").on("click", ".btnBorrarTarea", function () {
         let idTarea = $(this).attr("id");
 
         borrarTarea(idTarea)
@@ -41,10 +78,10 @@ function renderizarTareas(tareas) {
                 <div id="${tarea.id}" class="tarea">
                     <div>
                         <strong>${tarea.nombre}</strong>
-                        <p>${tarea.descripcion}</p>
+                        <p>${tarea.descripcion && tarea.descripcion.trim() ? tarea.descripcion : "Tarea sin descripción"}</p>
                     </div>
                     <div>
-                        <button id="${tarea.id}" class="btnEditarTarea">Editar</button>
+                        <button id="${tarea.id}" class="btnEditarTarea" data-nombre="${tarea.nombre}" data-descripcion="${tarea.descripcion}">Editar</button>
                         <button id="${tarea.id}" class="btnBorrarTarea">Borrar</button>
                     </div>
                 </div>
@@ -52,6 +89,13 @@ function renderizarTareas(tareas) {
         $("#listaTareas").append(tareaHtml);
     });
 };
+
+function cerrarFondoNegro() {
+    $("#fondoNegro").fadeOut(300, function () {
+        $("#descripcionTarea").val("");
+        $("#nombreTarea").val("");
+    });
+}
 
 async function cargarTareas() {
     const querySnapshot = await getDocs(collection(db, "tareas"));

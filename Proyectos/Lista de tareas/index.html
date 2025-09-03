@@ -21,12 +21,23 @@
             <i class="fa-solid fa-arrow-left"></i>
             <strong>Volver atras</strong>
         </div>
-        <input id="nombreTarea" type="text">
-        <input id="descripcionTarea" type="text">
     </header>
 
     <main>
-        <section id="fondoNegro"></section>
+        <section id="fondoNegro">
+            <div class="contenidoFondoNegro">
+                <div>
+                    <h3></h3>
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div>
+                    <input id="nombreTarea" type="text" placeholder="Nombre">
+                    <input id="descripcionTarea" type="text" placeholder="Descripción">
+                    <button id="btnGuardarYCrear">Guardar</button>
+                </div>
+                <p class="error"></p>
+            </div>
+        </section>
         <section>
             <div id="cabeceraTareas">
                 <input type="text" id="buscadorTareas" placeholder="Buscar tareas...">
