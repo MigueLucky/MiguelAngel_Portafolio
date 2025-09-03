@@ -54,10 +54,6 @@ function mostrarProyectosMain() {
 function mostrarContacto() {
     $("main").append(`
         <form id="formContacto" action="https://formsubmit.co/miguejordaterol@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nuevo mensaje del portafolio - {{asunto}}">
-            <input type="hidden" name="_next" value="https://miguelucky.github.io/MiguelAngel_Portafolio/gracias.html">
-            <input type="hidden" name="mensajeCompleto" id="mensajeCompleto">
-
             <input type="text" name="asunto" placeholder="Asunto del email" />
             <textarea name="descripcion" placeholder="Descripción del email" rows="5"></textarea>
             <input type="email" name="email" placeholder="Tu correo (opcional, para poder responderte)" />
@@ -68,17 +64,22 @@ function mostrarContacto() {
         </form>
     `);
 
-    $("main").on("submit", "#formContacto", function () {
-        let descripcion = this.descripcion.value.trim();
-        let email = this.email.value.trim();
+    $("main").off().on("submit", "#formContacto", function () {
         let asunto = this.asunto.value.trim();
+        let descripcion = this.descripcion.value.trim();
 
         if (!asunto || !descripcion) {
             $(".error").show();
             return false; 
-        } else {
-            $(".error").hide();
-            $("#mensajeCompleto").val(descripcion + "\nCorreo de respuesta: " + email);
+        }  else {
+            $("main").empty();
+            $("main").append("<h2>Mensaje enviado correctamente, le responderé lo antes posible o, si es una sugerencia, ¡GRACIAS!</h2>");
+            
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 3000);
+
+            return true;
         }
     });
 }
