@@ -60,11 +60,12 @@ function mostrarContacto() {
 
             <button type="submit">Enviar</button>
 
-            <p class="error">Por favor, rellena todos los campos obligatorios antes de enviar.</p>
+            <p class="notificacion error">Por favor, rellena todos los campos obligatorios antes de enviar.</p>
+            <p class="notificacion enviado">Mensaje enviado correctamente, contactare lo antes posible</p>
         </form>
     `);
 
-    $("main").off().on("submit", "#formContacto", function () {
+    $("main").off("submit", "#formContacto").on("submit", "#formContacto", function () {
         let asunto = this.asunto.value.trim();
         let descripcion = this.descripcion.value.trim();
 
@@ -72,19 +73,17 @@ function mostrarContacto() {
             $(".error").show();
             return false;
         } else {
-            $("main").empty();
-            $("main").append(`
-                <h2>Mensaje enviado correctamente, le responderé lo antes posible.</h2>
-                <h3>Se le movera automaticamente al index pasados unos segundos</h3>
-                `);
+            $(".error").hide();
+            $(".enviado").show();
+
+            $(this).find("button[type='submit']").prop("disabled", true);
+            this.asunto.value = "";
+            this.descripcion.value = "";
+            this.email.value = "";
 
             setTimeout(function () {
-                $("main").fadeOut(1000, function () {
-                    window.location.href = "index.html";
-                });
-            }, 5000);
-
-            return true;
+                window.location.href = "index.html";
+            }, 4000);
         }
     });
 }
