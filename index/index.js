@@ -55,13 +55,13 @@ function mostrarContacto() {
     $("main").append(`
         <form id="formContacto" action="https://formsubmit.co/miguejordaterol@gmail.com" method="POST">
             <input type="text" name="asunto" placeholder="Asunto del email" />
+            <input type="hidden" name="_next" value="https://miguelucky.github.io/MiguelAngel_Portafolio/gracias.html">
             <textarea name="descripcion" placeholder="Descripción del email" rows="5"></textarea>
             <input type="email" name="email" placeholder="Tu correo (opcional, para poder responderte)" />
 
             <button type="submit">Enviar</button>
 
             <p class="notificacion error">Por favor, rellena todos los campos obligatorios antes de enviar.</p>
-            <p class="notificacion enviado">Mensaje enviado correctamente, contactare lo antes posible</p>
         </form>
     `);
 
@@ -76,32 +76,7 @@ function mostrarContacto() {
             return false;
         } else {
             $(".error").hide();
-
             $(this).find("button[type='submit']").prop("disabled", true);
-
-            const data = new FormData(this);
-
-            fetch(this.action, {
-                method: this.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        $(".enviado").show();
-                        
-                        this.asunto.value = "";
-                        this.descripcion.value = "";
-                        this.email.value = "";
-
-                        setTimeout(function () {
-                            window.location.href = "index.html";
-                        }, 4000);
-                    } else {
-                        console.error("Error al enviar el email");
-                    }
-                })
-                .catch(error => console.error("Error en la conexión", error));
         }
     });
 }
