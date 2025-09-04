@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="index/index.css">
+    <link rel="stylesheet" href="index/gracias.css">
     <link rel="icon" type="image/x-icon" href="index/favicon.ico">
 </head>
-<body style="display: flex;">
-    <div>
-        <h2>Mensaje enviado correctamente, contactaré lo antes posible, muchas gracias</h2>
-        <h3>Seras redirigido al index en unos segundos</h3>
-    </div>
+
+<body>
+    <header>
+        <h1>Muchas gracias por contactar</h1>
+    </header>
+
+    <main>
+        <h2>Mensaje enviado correctamente, contactaré lo antes posible.</h2>
+        <h3>Seras redirigido al index en <span id="contador">5</span> segundos</h3>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        let segundos = 5;
+
+        const intervalo = setInterval(() => {
+            segundos--;
+            $("#contador").text(segundos);
+
+            if (segundos <= 0) {
+                clearInterval(intervalo);
+                window.location.href = "index.html";
+            }
+        }, 1000);
+    </script>
 </body>
+
 </html>
