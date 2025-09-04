@@ -65,7 +65,9 @@ function mostrarContacto() {
         </form>
     `);
 
-    $("main").off("submit", "#formContacto").on("submit", "#formContacto", function () {
+    $("main").off("submit", "#formContacto").on("submit", "#formContacto", function (e) {
+        e.preventDefault();
+
         let asunto = this.asunto.value.trim();
         let descripcion = this.descripcion.value.trim();
 
@@ -74,16 +76,32 @@ function mostrarContacto() {
             return false;
         } else {
             $(".error").hide();
-            $(".enviado").show();
 
             $(this).find("button[type='submit']").prop("disabled", true);
-            this.asunto.value = "";
-            this.descripcion.value = "";
-            this.email.value = "";
 
-            setTimeout(function () {
-                window.location.href = "index.html";
-            }, 4000);
+            const data = new FormData(this);
+
+            fetch(this.action, {
+                method: this.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        $(".enviado").show();
+                        
+                        this.asunto.value = "";
+                        this.descripcion.value = "";
+                        this.email.value = "";
+
+                        setTimeout(function () {
+                            window.location.href = "index.html";
+                        }, 4000);
+                    } else {
+                        console.error("Error al enviar el email");
+                    }
+                })
+                .catch(error => console.error("Error en la conexión", error));
         }
     });
 }
