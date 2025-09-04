@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clima actual</title>
 
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="generalClimaActual.css">
@@ -14,17 +15,27 @@
 </head>
 
 <body>
+    <div id="blur"></div>
     <header>
         <h1>Clima actual</h1>
         <div id="volverAtras">
             <i class="fa-solid fa-arrow-left"></i>
             <strong>Volver atras</strong>
         </div>
+        <div id="tipoBusqueda">
+            <h3>Establece tu ubicación:</h3>
+            <div id="opcionesBusqueda">
+                <div id="manual"><strong>Manualmente</strong></div>
+                <div id="automatico"><strong>Automaticamente</strong></div>
+            </div>
+        </div>
     </header>
 
-    <main></main>
+    <main>
+    </main>
+
     <footer>
-        <h3>La información del clima, la proporciona una api externa gratuita, quiza no es 100% veraz</h3>
+        <h3>La información del clima, la proporciona una api externa gratuita, quiza no es 100% veraz.</h3>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="generalClimaActual.js"></script>

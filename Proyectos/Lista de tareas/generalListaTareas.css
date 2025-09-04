@@ -146,6 +146,11 @@ header {
     align-items: center;
     cursor: pointer;
     width: fit-content;
+    transition: color 0.5s;
+}
+
+#volverAtras:hover  {
+    color:blue;
 }
 
 #volverAtras i {

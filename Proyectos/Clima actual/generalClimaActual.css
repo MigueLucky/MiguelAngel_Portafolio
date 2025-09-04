@@ -27,7 +27,7 @@ h3 {
 strong {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
-    line-height: 1.6;
+    line-height: 2;
 }
 
 p,
@@ -44,18 +44,45 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    background: linear-gradient(to bottom right,
+            #1e3c72,
+            #2a5298,
+            #4facfe,
+            #43e97b,
+            #f9d423,
+            #f12711);
+    background-size: 400% 400%;
+    animation: moverGradiente 40s ease infinite;
 }
 
-header,
-main,
-footer {
+@keyframes moverGradiente {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#blur {
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    position: fixed;
+    z-index: 0;
     margin-left: 20vw;
     width: 60vw;
 }
 
 header {
-    margin-bottom: 100px;
     text-align: center;
+    z-index: 1;
+    margin-left: 22vw;
+    width: 56vw;
 }
 
 #volverAtras {
@@ -63,16 +90,60 @@ header {
     align-items: center;
     cursor: pointer;
     width: fit-content;
+    margin-left: 10px;
+    transition: color 0.5s;
+}
+
+#volverAtras:hover {
+    color: aqua;
 }
 
 #volverAtras i {
     margin-right: 5px;
 }
 
-main {
+#tipoBusqueda {
+    background-color: antiquewhite;
+    margin-top: 20px;
+    border-radius: 5px;
+}
 
+#opcionesBusqueda {
+    display: flex;
+}
+
+#manual {
+    border-radius: 0 0 0 5px;
+}
+
+#automatico {
+    border-radius: 0 0 5px 0;
+}
+
+#manual,
+#automatico {
+    width: 50%;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+#manual:hover,
+#automatico:hover {
+    background-color: white;
+}
+
+main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    z-index: 1;
+    margin-left: 25vw;
+    width: 50vw;
 }
 
 footer {
     text-align: center;
+    z-index: 1;
+    margin-left: 25vw;
+    width: 50vw;
 }
