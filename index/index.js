@@ -65,9 +65,7 @@ function mostrarContacto() {
         </form>
     `);
 
-    $("main").off("submit", "#formContacto").on("submit", "#formContacto", function (e) {
-        e.preventDefault();
-
+    $("main").off("submit", "#formContacto").on("submit", "#formContacto", function () {
         let asunto = this.asunto.value.trim();
         let descripcion = this.descripcion.value.trim();
 
